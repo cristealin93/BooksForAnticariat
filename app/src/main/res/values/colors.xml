@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#DE2173</color>
+    <color name="colorPrimaryDark">#222934</color>
+    <color name="colorAccent">#DE2173</color>
+
+    <color name="colorThemePink">#DE2173</color>
+    <color name="colorThemeOrange">#F4442D</color>
+
+    <color name="colorPrimaryText">#222934</color>
+    <color name="colorSecondaryText">#98989898</color>
+
+    <color name="white">#FFFFFFFF</color>
+</resources>
