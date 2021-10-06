@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activites.LoginActivity">
 
     <FrameLayout
@@ -20,7 +21,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/content_description"
             android:scaleType="fitXY"
-            android:src="@drawable/slash" />
+            android:src="@drawable/background_login_img" />
 
         <ImageView
             android:layout_width="@dimen/auth_logo_width_size"
@@ -28,8 +29,8 @@
             android:layout_gravity="center"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
-            android:src="@drawable/logo"
-            app:tint="@color/cardview_dark_background" />
+            android:src="@drawable/logo5"
+            app:tint="@color/white" />
 
     </FrameLayout>
 
@@ -53,8 +54,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="16dp"
+        android:orientation="vertical"
         android:hint="@string/et_hint_email_id"
         android:textColorHint="@color/colorSecondaryText"
+        app:boxStrokeWidthFocused="0dp"
+        app:hintTextColor="@color/colorPrimaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_title">
@@ -63,11 +67,16 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:padding="@dimen/et_padding"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/et_textSize"
-            android:text="abc@gmail.com"/>
+            android:textSize="@dimen/et_textSize" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorSecondaryText"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +89,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
+        android:orientation="vertical"
         android:hint="@string/et_hint_password"
+        app:boxStrokeWidthFocused="0dp"
+        app:hintTextColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,9 +105,80 @@
             android:inputType="textPassword"
             android:padding="@dimen/et_padding"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/et_textSize"
-            android:text="1234"/>
+            android:textSize="@dimen/et_textSize"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorSecondaryText"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.anticariat.friendlybooks.utils.MSTextView
+        android:id="@+id/txt_forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/clickable_text_view_padding"
+        android:text="@string/lbl_forgot_password"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/forgot_password_textSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password" />
+
+    <com.anticariat.friendlybooks.utils.MSButton
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_background"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:paddingTop="@dimen/btn_padding"
+        android:paddingBottom="@dimen/btn_padding"
+        android:text="@string/btn_lbl_login"
+        android:textSize="@dimen/btn_textSize"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_forgot_password"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login">
+
+        <com.anticariat.friendlybooks.utils.MSTextView
+            android:id="@+id/txt_don_t_have_an_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="@dimen/clickable_text_view_padding"
+            android:text="@string/don_t_have_an_account"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/lbl_text_view_textSize" />
+
+        <com.anticariat.friendlybooks.utils.MSTextBold
+            android:id="@+id/txt_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/clickable_text_view_padding"
+            android:text="@string/register"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/lbl_text_view_textSize" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
