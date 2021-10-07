@@ -9,15 +9,15 @@ import android.view.WindowManager
 import com.anticariat.friendlybooks.R
 import com.anticariat.friendlybooks.utils.MSTextBold
 
-class LoginActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var tv_register:MSTextBold
+    private lateinit var tv_login: MSTextBold
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_register)
 
-        tv_register=findViewById(R.id.tv_register)
+        tv_login=findViewById(R.id.tv_login)
 
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -29,11 +29,10 @@ class LoginActivity : AppCompatActivity() {
             )
         }
 
-        tv_register.setOnClickListener(){
+        tv_login.setOnClickListener(){
 
-            startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
+            startActivity(Intent(this@RegisterActivity,LoginActivity::class.java))
             finish()
         }
-
     }
 }

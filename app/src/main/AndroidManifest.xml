@@ -10,13 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendlyBooks">
 
-        <activity android:name=".activites.LoginActivity"
+        <activity android:name=".activites.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SlashTheme"/>
 
-        <activity android:name=".activites.MainActivity"
-            android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".activites.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SlashTheme" />
+        <activity
+            android:name=".activites.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activites.SplashActivity"
             android:screenOrientation="portrait"

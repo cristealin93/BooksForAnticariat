@@ -116,7 +116,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.anticariat.friendlybooks.utils.MSTextView
-        android:id="@+id/txt_forgot_password"
+        android:id="@+id/tv_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -146,7 +146,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_forgot_password"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_forgot_password"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -159,7 +159,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_login">
 
         <com.anticariat.friendlybooks.utils.MSTextView
-            android:id="@+id/txt_don_t_have_an_account"
+            android:id="@+id/tv_don_t_have_an_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -169,7 +169,7 @@
             android:textSize="@dimen/lbl_text_view_textSize" />
 
         <com.anticariat.friendlybooks.utils.MSTextBold
-            android:id="@+id/txt_register"
+            android:id="@+id/tv_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
