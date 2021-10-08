@@ -20,4 +20,15 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login"><u>Login</u></string>
 
+    <string name="err_message_enter_first_name">Please enter first name.</string>
+    <string name="err_message_enter_last_name">Please enter last name.</string>
+    <string name="err_message_enter_email">Please enter email.</string>
+    <string name="err_message_enter_password">Please enter password.</string>
+    <string name="err_message_enter_confirm_password">Please confirm password.</string>
+    <string name="err_message_password_and_confirm_password_mismatch">Password and Confirm Password dose not matches.</string>
+    <string name="err_message_agree_terms_and_condition">Please agree terms and condition.</string>
+    <string name="valid_details">Thanks for registering!</string>
+
+    <string name="please_wait">Please Wait..</string>
+
 </resources>

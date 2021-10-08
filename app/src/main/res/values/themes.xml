@@ -15,8 +15,7 @@
     </style>
 
     <style name="SlashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+
 
 
     </style>

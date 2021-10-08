@@ -12,29 +12,23 @@ import android.widget.TextView
 import com.anticariat.friendlybooks.R
 
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_acrivity)
 
         // Hide ActionBar and NavBar
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
+        // full screen
+        fullScreenWhitOutDownButton()
 
 //        val type:Typeface=Typeface.createFromAsset(assets,"Montserrat-Bold.ttf")
 //            txt_splash.typeface=type
 
+        // Delay to go to the next activity
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             finish()
         }, 2500)
 
