@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "218107710179",
+    "project_id": "anticariatapp",
+    "storage_bucket": "anticariatapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218107710179:android:ae50f301e25bb3b41913d6",
+        "android_client_info": {
+          "package_name": "com.anticariat.friendlybooks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218107710179-qo2tk660b19nf0lbgkmq6l8nejcvndps.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anticariat.friendlybooks",
+            "certificate_hash": "e820ef743bf02adde3120b7cc4b34579362a5638"
+          }
+        },
+        {
+          "client_id": "218107710179-v2dqcgf9u8u7ufsrrtl3n1g2djhp806c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCEoqZgSNNbeym-bei3RseqX80v2-cZuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218107710179-v2dqcgf9u8u7ufsrrtl3n1g2djhp806c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

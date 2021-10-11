@@ -18,8 +18,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.graphics.drawable.DrawableCompat
 import com.anticariat.friendlybooks.R
+import com.anticariat.friendlybooks.firestore.FireStoreClass
+import com.anticariat.friendlybooks.model.User
 import com.anticariat.friendlybooks.utils.MSEditText
 import com.anticariat.friendlybooks.utils.MSTextBold
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -36,8 +39,7 @@ class RegisterActivity : BaseActivity() {
 
         // go to LoginActivity
         tv_login.setOnClickListener() {
-            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-            finish()
+            onBackPressed()
         }
         btn_register.setOnClickListener { registerUser() }
 
@@ -95,7 +97,7 @@ class RegisterActivity : BaseActivity() {
                 false
             }
             else -> {
-               // showErrorSnackBar(resources.getString(R.string.valid_details), false)
+                // showErrorSnackBar(resources.getString(R.string.valid_details), false)
                 true
             }
         }
@@ -112,18 +114,36 @@ class RegisterActivity : BaseActivity() {
             Firebase.auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
 
-                    hideProgressDialog()
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        val firebaseUser : FirebaseUser =task.result!!.user!!
-                        showErrorSnackBar("You are registered successfully. Your user id is ${firebaseUser.uid}", false)
+                        val firebaseUser: FirebaseUser = task.result!!.user!!
 
+                        val user= User(
+                            firebaseUser.uid,
+                            et_first_name.text.toString().trim { it <= ' ' },
+                            et_last_name.text.toString().trim { it <= ' ' },
+                            et_email_register.text.toString().trim { it <= ' ' })
+
+                        FireStoreClass().userRegistration(this@RegisterActivity,user)
+                        useRegistrationSuccess()
+
+//                        FirebaseAuth.getInstance().signOut()
+//                        finish()
                     } else {
+                        hideProgressDialog()
                         // If sign in fails, display a message to the user.
                         showErrorSnackBar(task.exception!!.message.toString(), true)
 
                     }
                 }
         }
+    }
+
+    internal fun useRegistrationSuccess() {
+
+        hideProgressDialog()
+        Toast.makeText(this@RegisterActivity,resources.getString(R.string.register_success),Toast.LENGTH_LONG).show()
+        finish()
+
     }
 }

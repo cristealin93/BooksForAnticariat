@@ -56,4 +56,6 @@ open class BaseActivity : AppCompatActivity() {
     fun hideProgressDialog(){
         mProgressBar.dismiss()
     }
+
+
 }

@@ -31,4 +31,11 @@
 
     <string name="please_wait">Please Wait..</string>
 
+    <string name="btn_lbl_submit">Submit</string>
+    <string name="tv_lbl_title_FP">Forgot Password?</string>
+    <string name="FP_tile_description">Enter your e-mail address, we\'ll send you an email to reset your password</string>
+
+    <string name="check_email">Check your e-mail!</string>
+    <string name="register_success">You are registered successfully!</string>
+
 </resources>
