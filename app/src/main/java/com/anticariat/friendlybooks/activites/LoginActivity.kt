@@ -5,10 +5,13 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.anticariat.friendlybooks.R
+import com.anticariat.friendlybooks.firestore.FireStoreClass
+import com.anticariat.friendlybooks.model.User
 import com.anticariat.friendlybooks.utils.MSTextBold
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
@@ -27,11 +30,23 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         tv_forgot_password.setOnClickListener(this)
     }
 
+    fun userLoggedInSuccess(user: User) {
+
+        hideProgressDialog()
+
+        Log.i("First Name", user.firstName)
+        Log.i("Last Name", user.lastName)
+        Log.i("Email", user.email)
+
+        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        finish()
+    }
+
     override fun onClick(view: View?) {
         if (view != null) {
             when (view.id) {
                 R.id.tv_forgot_password -> {
-                    startActivity(Intent(this@LoginActivity,ForgotPasswordActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
                 }
                 R.id.btn_login -> {
                     logInRegistedUser()
@@ -45,20 +60,19 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun logInRegistedUser() {
-        if(validationLogInDetails()){
+        if (validationLogInDetails()) {
             showProgressBarDialog(resources.getString(R.string.please_wait))
 
-            val email=et_email.text.toString().trim{it<=' '}
-            val password=et_password.text.toString().trim{it<=' '}
+            val email = et_email.text.toString().trim { it <= ' ' }
+            val password = et_password.text.toString().trim { it <= ' ' }
 
             // LogIn with Firebase
-
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener{task->
-                    hideProgressDialog()
-                    if (task.isSuccessful){
-                        showErrorSnackBar("Login successfully!",false)
-                    }else{
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        FireStoreClass().getUserDetails(this@LoginActivity)
+                    } else {
+                        hideProgressDialog()
                         showErrorSnackBar(task.exception!!.toString(), true)
                     }
                 }
@@ -77,10 +91,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 false
             }
             else -> {
-               // showErrorSnackBar("Your details are valid.", false)
+                // showErrorSnackBar("Your details are valid.", false)
                 true
             }
         }
     }
+
 
 }
