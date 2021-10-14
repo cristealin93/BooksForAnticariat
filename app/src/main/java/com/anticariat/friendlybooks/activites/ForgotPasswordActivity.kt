@@ -4,21 +4,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.anticariat.friendlybooks.R
+import com.anticariat.friendlybooks.databinding.ActivityForgotPasswordActicityBinding
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_forgot_password_acticity.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.activity_register.iv_toolbar_back
+
 
 class ForgotPasswordActivity : BaseActivity() {
+    private lateinit var binding: ActivityForgotPasswordActicityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_forgot_password_acticity)
+        binding= ActivityForgotPasswordActicityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         fullScreenWhitOutDownButton()
-        iv_toolbar_back_FP.setOnClickListener { onBackPressed() }
+        binding.ivToolbarBackFP.setOnClickListener { onBackPressed() }
 
-        btn_submit.setOnClickListener{
-            val email=et_email_FP.text.toString().trim { it<=' ' }
+        binding.btnSubmit.setOnClickListener{
+            val email=binding.etEmailFP.text.toString().trim { it<=' ' }
             if(email.isEmpty()){
                 showErrorSnackBar(resources.getString(R.string.err_message_enter_email,),true)
             }else{

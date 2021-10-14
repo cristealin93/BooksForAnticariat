@@ -7,13 +7,16 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
+import androidx.viewbinding.ViewBinding
 import com.anticariat.friendlybooks.R
+import com.anticariat.friendlybooks.databinding.ProgresDialogBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.progres_dialog.*
+
 
 open class BaseActivity : AppCompatActivity() {
 
     lateinit var mProgressBar:Dialog
+    private lateinit var binding: ProgresDialogBinding
 
     fun showErrorSnackBar(message:String,errorMessage:Boolean){
 
@@ -42,10 +45,13 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun showProgressBarDialog(text:String){
+
+        binding= ProgresDialogBinding.inflate(layoutInflater)
+
         mProgressBar= Dialog(this)
 
-        mProgressBar.setContentView(R.layout.progres_dialog)
-        mProgressBar.tv_loading_register.text=text
+        mProgressBar.setContentView(binding.root)
+        binding.tvLoadingRegister.text=text
 
         mProgressBar.setCancelable(false)
         mProgressBar.setCanceledOnTouchOutside(false)

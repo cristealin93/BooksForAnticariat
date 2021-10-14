@@ -60,7 +60,7 @@ class FireStoreClass {
                         activity.userLoggedInSuccess(user)
                     }
                 }
-            }.addOnFailureListener {e->
+            }.addOnFailureListener {
 
                 when(activity){
                     is LoginActivity->{

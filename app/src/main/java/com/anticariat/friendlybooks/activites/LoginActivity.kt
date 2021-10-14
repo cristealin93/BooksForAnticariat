@@ -10,24 +10,26 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.anticariat.friendlybooks.R
+import com.anticariat.friendlybooks.databinding.ActivityLoginBinding
 import com.anticariat.friendlybooks.firestore.FireStoreClass
 import com.anticariat.friendlybooks.model.User
 import com.anticariat.friendlybooks.utils.MSTextBold
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_register.*
+
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
 
+    private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding= ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // full screen
         fullScreenWhitOutDownButton()
-        btn_login.setOnClickListener(this)
-        tv_register.setOnClickListener(this)
-        tv_forgot_password.setOnClickListener(this)
+        binding.btnLogin.setOnClickListener(this)
+        binding.tvRegister.setOnClickListener(this)
+        binding.tvForgotPassword.setOnClickListener(this)
     }
 
     fun userLoggedInSuccess(user: User) {
@@ -63,8 +65,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         if (validationLogInDetails()) {
             showProgressBarDialog(resources.getString(R.string.please_wait))
 
-            val email = et_email.text.toString().trim { it <= ' ' }
-            val password = et_password.text.toString().trim { it <= ' ' }
+            val email = binding.etEmail.text.toString().trim { it <= ' ' }
+            val password = binding.etPassword.text.toString().trim { it <= ' ' }
 
             // LogIn with Firebase
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
@@ -82,11 +84,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     private fun validationLogInDetails(): Boolean {
 
         return when {
-            TextUtils.isEmpty(et_email.text.toString().trim { it <= ' ' }) -> {
+            TextUtils.isEmpty(binding.etEmail.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_message_enter_email), true)
                 false
             }
-            TextUtils.isEmpty(et_password.text.toString().trim { it <= ' ' }) -> {
+            TextUtils.isEmpty(binding.etPassword.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_message_enter_password), true)
                 false
             }

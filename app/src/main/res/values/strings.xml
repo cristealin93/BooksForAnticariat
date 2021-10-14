@@ -38,4 +38,9 @@
     <string name="check_email">Check your e-mail!</string>
     <string name="register_success">You are registered successfully!</string>
 
+    <string name="title_complete_profile">Complete Profile</string>
+    <string name="et_hint_mobile_number">Phone Number</string>
+    <string name="rb_lbl_male">Male</string>
+    <string name="rb_lbl_female">Female</string>
+    <string name="btn_lbl_save">Female</string>
 </resources>
