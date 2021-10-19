@@ -40,7 +40,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         Log.i("Last Name", user.lastName)
         Log.i("Email", user.email)
 
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        if(user.profileCompleted==0){
+            startActivity(Intent(this@LoginActivity, UserProfileActivity::class.java))
+        }else{
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        }
+
+
         finish()
     }
 

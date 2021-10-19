@@ -9,14 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendlyBooks">
+
         <activity android:name=".activites.UserProfileActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/SlashTheme"  />
 
         <activity
             android:name=".activites.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SlashTheme" />
+
         <activity android:name=".activites.BaseActivity" />
+
         <activity
             android:name=".activites.RegisterActivity"
             android:screenOrientation="portrait"

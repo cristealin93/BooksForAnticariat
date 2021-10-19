@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".activites.UserProfileActivity">
 
@@ -195,9 +196,73 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorSecondaryText" />
+                    android:background="@color/colorSecondaryText"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <RadioGroup
+                android:id="@+id/rg_gender"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/profile_radio_button_height"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/btn_submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_phone_number">
+
+                <com.anticariat.friendlybooks.utils.MSRadioButton
+                    android:id="@+id/rb_male"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/profile_radio_button_marginEnd"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_gender_tab_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="@string/rb_lbl_male"
+                    android:textColor="@drawable/drawable_gender_tab_txt_color_selector"
+                    android:textStyle="bold"/>
+
+                <com.anticariat.friendlybooks.utils.MSRadioButton
+                    android:id="@+id/rb_female"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/profile_radio_button_marginEnd"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_gender_tab_selector"
+                    android:button="@null"
+                    android:checked="false"
+                    android:gravity="center"
+                    android:text="@string/rb_lbl_female"
+                    android:textColor="@drawable/drawable_gender_tab_txt_color_selector"
+                    android:textStyle="bold"/>
+            </RadioGroup>
+
+            <com.anticariat.friendlybooks.utils.MSButton
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_background"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingTop="@dimen/btn_padding"
+                android:paddingBottom="@dimen/btn_padding"
+                android:text="@string/btn_lbl_save"
+                android:textSize="@dimen/btn_textSize"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/rg_gender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
