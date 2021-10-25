@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.anticariat.friendlybooks.activites.LoginActivity
 import com.anticariat.friendlybooks.activites.RegisterActivity
+import com.anticariat.friendlybooks.activites.UserProfileActivity
 import com.anticariat.friendlybooks.model.User
 import com.anticariat.friendlybooks.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -69,6 +70,24 @@ class FireStoreClass {
                 }
 
 
+
+            }
+    }
+
+    fun updateUserProfile(activity:Activity, userHashMap: HashMap<String, Any>){
+
+        mFireStore.collection(Constants.USER).document(getCurrentUser()).update(userHashMap)
+            .addOnSuccessListener {
+                when(activity){
+                    is UserProfileActivity->
+                       activity.userProfileUpdateSuccess()
+                }
+            }
+            .addOnFailureListener{e->
+                when(activity){
+                    is UserProfileActivity->
+                        activity.hideProgressDialog()
+                }
 
             }
     }

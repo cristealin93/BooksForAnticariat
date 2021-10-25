@@ -43,4 +43,6 @@
     <string name="rb_lbl_male">Male</string>
     <string name="rb_lbl_female">Female</string>
     <string name="btn_lbl_save">Save</string>
+    <string name="read_storage_permission_denited">Provide permission from menu permissions!</string>
+    <string name="err_msg_enter_moblie_number">Plsease enter the phone number</string>
 </resources>
