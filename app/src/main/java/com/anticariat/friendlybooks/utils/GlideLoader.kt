@@ -6,10 +6,9 @@ import android.widget.ImageView
 import com.anticariat.friendlybooks.R
 import com.bumptech.glide.Glide
 import java.io.IOException
-import java.net.URI
 
 class GlideLoader(val context: Context) {
-    fun loaderUserPicture(imageUri: Uri,imageView:ImageView){
+    fun loaderUserPicture(imageUri: Uri, imageView:ImageView){
         try{
             Glide
                 .with(context)

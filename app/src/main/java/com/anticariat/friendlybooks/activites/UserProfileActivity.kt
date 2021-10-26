@@ -1,19 +1,15 @@
 package com.anticariat.friendlybooks.activites
 
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ComponentActivity
 import androidx.core.content.ContextCompat
 import com.anticariat.friendlybooks.R
 import com.anticariat.friendlybooks.databinding.ActivityUserProfileBinding
@@ -22,14 +18,13 @@ import com.anticariat.friendlybooks.model.User
 import com.anticariat.friendlybooks.utils.Constants
 import com.anticariat.friendlybooks.utils.GlideLoader
 import java.io.IOException
-import java.util.jar.Manifest
 
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var userDetails :User
-    private val getImage = registerForActivityResult(ActivityResultContracts.GetContent()) {
-        // binding.ivUserPhoto.setImageURI(it)
-        GlideLoader(this).loaderUserPicture(it, binding.ivUserPhoto) }
+    private  var mSelectedImageFileUri: Uri?=null
+    lateinit var getContent: ActivityResultLauncher<String>
+
     private lateinit var binding: ActivityUserProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +32,17 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
+            try{
+                mSelectedImageFileUri=it
+                GlideLoader(this).loaderUserPicture(mSelectedImageFileUri!!, binding.ivUserPhoto)
+            }catch (e:IOException){
+                e.printStackTrace()
+                Toast.makeText(this@UserProfileActivity,"Image selection failed",Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
         userDetails = User()
         if (intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
 
@@ -78,23 +84,25 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
                 R.id.btn_submit->{
-                  if(checkEmailAndGender()){
+                    showProgressBarDialog(resources.getString(R.string.please_wait))
 
+                    FireStoreClass().uploadImageToCloudStorage(this,mSelectedImageFileUri)
 
-                      val userHashMap=HashMap<String,Any>()
-                      val userPhoneNumber=binding.etPhoneNumber.text.toString().trim{it<=' '}
-                      val gender=if(binding.rbMale.isChecked) {
-                          Constants.MALE
-                      } else{
-                              Constants.FEMALE
-                          }
-                      if(userPhoneNumber.isNotEmpty()){
-                          userHashMap[Constants.MOBILE]=userPhoneNumber.toLong()
-                          userHashMap[Constants.GENDER]=gender
-                      }
-                      showProgressBarDialog(resources.getString(R.string.please_wait))
-                        FireStoreClass().updateUserProfile(this,userHashMap)
-                  }
+//                  if(checkEmailAndGender()){
+//                      val userHashMap=HashMap<String,Any>()
+//                      val userPhoneNumber=binding.etPhoneNumber.text.toString().trim{it<=' '}
+//                      val gender=if(binding.rbMale.isChecked) {
+//                          Constants.MALE
+//                      } else{
+//                              Constants.FEMALE
+//                          }
+//                      if(userPhoneNumber.isNotEmpty()){
+//                          userHashMap[Constants.MOBILE]=userPhoneNumber.toLong()
+//                          userHashMap[Constants.GENDER]=gender
+//                      }
+//                      showProgressBarDialog(resources.getString(R.string.please_wait))
+//                        FireStoreClass().updateUserProfile(this,userHashMap)
+//                  }
                 }
             }
 
@@ -122,7 +130,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setImageForResult() {
-        getImage.launch("image/*")
+        getContent.launch("image/*")
     }
 
     private fun checkEmailAndGender():Boolean{
@@ -148,5 +156,12 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
         startActivity(Intent(this@UserProfileActivity,MainActivity::class.java))
         finish()
+    }
+
+    fun imageUploadSuccessfully(imageURL:String){
+
+        hideProgressDialog()
+        Toast.makeText(this@UserProfileActivity,"Your image was successfully uploaded! Image URL is $imageURL",
+            Toast.LENGTH_LONG).show()
     }
 }

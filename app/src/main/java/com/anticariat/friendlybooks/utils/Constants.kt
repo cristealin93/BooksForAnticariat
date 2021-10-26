@@ -2,7 +2,9 @@ package com.anticariat.friendlybooks.utils
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.provider.MediaStore
+import android.webkit.MimeTypeMap
 
 object Constants {
 
@@ -18,4 +20,13 @@ object Constants {
 
     const val MOBILE:String="mobile"
     const val GENDER:String="gender"
+
+    const val USER_PROFILE_IMAGE:String="user_profile_image"
+
+    fun getFileExtension(activity: Activity,uri: Uri?):String?
+    {
+
+        return MimeTypeMap.getSingleton()
+            .getMimeTypeFromExtension(activity.contentResolver.getType(uri!!))
+    }
 }
