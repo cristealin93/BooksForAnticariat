@@ -15,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 
 open class BaseActivity : AppCompatActivity() {
 
-    lateinit var mProgressBar:Dialog
+    private lateinit var mProgressBar:Dialog
     private lateinit var binding: ProgresDialogBinding
 
     fun showErrorSnackBar(message:String,errorMessage:Boolean){

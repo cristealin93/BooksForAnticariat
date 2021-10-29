@@ -21,8 +21,10 @@ import java.io.IOException
 
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
-    private lateinit var userDetails :User
-    private  var mSelectedImageFileUri: Uri?=null
+    private lateinit var userDetails: User
+    private var mSelectedImageFileUri: Uri? = null
+    private var mUserProfileImageURL: String = ""
+
     lateinit var getContent: ActivityResultLauncher<String>
 
     private lateinit var binding: ActivityUserProfileBinding
@@ -33,12 +35,16 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
-            try{
-                mSelectedImageFileUri=it
+            try {
+                mSelectedImageFileUri = it
                 GlideLoader(this).loaderUserPicture(mSelectedImageFileUri!!, binding.ivUserPhoto)
-            }catch (e:IOException){
+            } catch (e: IOException) {
                 e.printStackTrace()
-                Toast.makeText(this@UserProfileActivity,"Image selection failed",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@UserProfileActivity,
+                    "Image selection failed",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
 
@@ -83,30 +89,41 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                         )
                     }
                 }
-                R.id.btn_submit->{
-                    showProgressBarDialog(resources.getString(R.string.please_wait))
+                R.id.btn_submit -> {
 
-                    FireStoreClass().uploadImageToCloudStorage(this,mSelectedImageFileUri)
+                    if (checkEmailAndGender()) {
+                        showProgressBarDialog(resources.getString(R.string.please_wait))
+                        if(mSelectedImageFileUri!=null) {
+                            FireStoreClass().uploadImageToCloudStorage(this, mSelectedImageFileUri)
+                        }else{
+                            updateUserProfileDetails()
+                        }
 
-//                  if(checkEmailAndGender()){
-//                      val userHashMap=HashMap<String,Any>()
-//                      val userPhoneNumber=binding.etPhoneNumber.text.toString().trim{it<=' '}
-//                      val gender=if(binding.rbMale.isChecked) {
-//                          Constants.MALE
-//                      } else{
-//                              Constants.FEMALE
-//                          }
-//                      if(userPhoneNumber.isNotEmpty()){
-//                          userHashMap[Constants.MOBILE]=userPhoneNumber.toLong()
-//                          userHashMap[Constants.GENDER]=gender
-//                      }
-//                      showProgressBarDialog(resources.getString(R.string.please_wait))
-//                        FireStoreClass().updateUserProfile(this,userHashMap)
-//                  }
+                    }
                 }
             }
 
         }
+    }
+
+    private fun updateUserProfileDetails() {
+        val userHashMap = HashMap<String, Any>()
+        val userPhoneNumber =
+            binding.etPhoneNumber.text.toString().trim { it <= ' ' }
+        val gender = if (binding.rbMale.isChecked) {
+            Constants.MALE
+        } else {
+            Constants.FEMALE
+        }
+        if (userPhoneNumber.isNotEmpty()) {
+            userHashMap[Constants.MOBILE] = userPhoneNumber.toLong()
+        }
+        userHashMap[Constants.GENDER] = gender
+        if(mUserProfileImageURL.isNotEmpty()){
+            userHashMap[Constants.IMAGE] = mUserProfileImageURL
+        }
+        userHashMap[Constants.COMPLETE_PROFILE]=1
+        FireStoreClass().updateUserProfile(this, userHashMap)
     }
 
     override fun onRequestPermissionsResult(
@@ -133,15 +150,15 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         getContent.launch("image/*")
     }
 
-    private fun checkEmailAndGender():Boolean{
+    private fun checkEmailAndGender(): Boolean {
 
-        return when{
+        return when {
 
-            TextUtils.isEmpty(binding.etPhoneNumber.text.toString().trim{it<=' '})->
-            {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_moblie_number),true)
+            TextUtils.isEmpty(binding.etPhoneNumber.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_moblie_number), true)
                 false
-            }else->{
+            }
+            else -> {
                 true
             }
 
@@ -149,19 +166,23 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    internal fun userProfileUpdateSuccess(){
+    internal fun userProfileUpdateSuccess() {
         hideProgressDialog()
 
-        Toast.makeText(this@UserProfileActivity,"Your profile was updated successfully.",Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            this@UserProfileActivity,
+            "Your profile was updated successfully.",
+            Toast.LENGTH_LONG
+        ).show()
 
-        startActivity(Intent(this@UserProfileActivity,MainActivity::class.java))
+        startActivity(Intent(this@UserProfileActivity, MainActivity::class.java))
         finish()
     }
 
-    fun imageUploadSuccessfully(imageURL:String){
+    fun imageUploadSuccessfully(imageURL: String) {
 
-        hideProgressDialog()
-        Toast.makeText(this@UserProfileActivity,"Your image was successfully uploaded! Image URL is $imageURL",
-            Toast.LENGTH_LONG).show()
+        //hideProgressDialog()
+        mUserProfileImageURL = imageURL
+        updateUserProfileDetails()
     }
 }

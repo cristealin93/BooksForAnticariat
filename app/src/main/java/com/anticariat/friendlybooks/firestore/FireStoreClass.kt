@@ -18,7 +18,7 @@ import com.google.firebase.storage.StorageReference
 
 class FireStoreClass {
 
-    val mFireStore = FirebaseFirestore.getInstance()
+    private val mFireStore = FirebaseFirestore.getInstance()
 
     fun userRegistration(activity: RegisterActivity, userInfo: User) {
 
@@ -35,7 +35,7 @@ class FireStoreClass {
             }
     }
 
-    fun getCurrentUser():String{
+    private fun getCurrentUser():String{
         val currentUserID=FirebaseAuth.getInstance().currentUser
         var currentUser=""
         if(currentUserID!=null){
@@ -87,7 +87,7 @@ class FireStoreClass {
                        activity.userProfileUpdateSuccess()
                 }
             }
-            .addOnFailureListener{e->
+            .addOnFailureListener{
                 when(activity){
                     is UserProfileActivity->
                         activity.hideProgressDialog()
@@ -115,7 +115,7 @@ class FireStoreClass {
                 }
                 }
         }
-            .addOnFailureListener{exception->
+            .addOnFailureListener{
 
                 when(activity){
                     is UserProfileActivity->{
