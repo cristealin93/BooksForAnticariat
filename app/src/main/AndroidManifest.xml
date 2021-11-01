@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.anticariat.friendlybooks">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,30 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendlyBooks">
 
-        <activity android:name=".activites.UserProfileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SlashTheme"  />
-
         <activity
-            android:name=".activites.ForgotPasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SlashTheme" />
-
-        <activity android:name=".activites.BaseActivity" />
-
+            android:name="com.anticariat.friendlybooks.ui.activites.DashBoardActivity"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".activites.RegisterActivity"
+            android:name="com.anticariat.friendlybooks.ui.activites.UserProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SlashTheme" />
         <activity
-            android:name=".activites.LoginActivity"
+            android:name="com.anticariat.friendlybooks.ui.activites.ForgotPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SlashTheme" />
+        <activity android:name="com.anticariat.friendlybooks.ui.activites.BaseActivity" />
+        <activity
+            android:name="com.anticariat.friendlybooks.ui.activites.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SlashTheme" />
         <activity
-            android:name=".activites.MainActivity"
+            android:name="com.anticariat.friendlybooks.ui.activites.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SlashTheme" />
+        <activity
+            android:name="com.anticariat.friendlybooks.ui.activites.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activites.SplashActivity"
+            android:name="com.anticariat.friendlybooks.ui.activites.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SlashTheme">
             <intent-filter>

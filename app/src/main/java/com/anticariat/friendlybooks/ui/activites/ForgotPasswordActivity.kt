@@ -1,6 +1,5 @@
-package com.anticariat.friendlybooks.activites
+package com.anticariat.friendlybooks.ui.activites
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.anticariat.friendlybooks.R

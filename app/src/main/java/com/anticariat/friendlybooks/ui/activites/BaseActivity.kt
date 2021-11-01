@@ -1,13 +1,14 @@
-package com.anticariat.friendlybooks.activites
+package com.anticariat.friendlybooks.ui.activites
 
 import android.app.Dialog
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.viewbinding.ViewBinding
 import com.anticariat.friendlybooks.R
 import com.anticariat.friendlybooks.databinding.ProgresDialogBinding
 import com.google.android.material.snackbar.Snackbar
@@ -17,6 +18,7 @@ open class BaseActivity : AppCompatActivity() {
 
     private lateinit var mProgressBar:Dialog
     private lateinit var binding: ProgresDialogBinding
+    private var mDoublePress:Boolean=false
 
     fun showErrorSnackBar(message:String,errorMessage:Boolean){
 
@@ -63,5 +65,20 @@ open class BaseActivity : AppCompatActivity() {
         mProgressBar.dismiss()
     }
 
+    fun pressDoubleForExit(){
+        if(mDoublePress){
+        super.onBackPressed()
+            return
+        }
+
+        this.mDoublePress=true
+        Toast.makeText(this,"Press again to exit.",Toast.LENGTH_SHORT).show()
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({ mDoublePress=false
+        }, 2000)
+
+
+    }
 
 }

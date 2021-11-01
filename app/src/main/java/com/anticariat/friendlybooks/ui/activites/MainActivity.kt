@@ -1,15 +1,12 @@
-package com.anticariat.friendlybooks.activites
+package com.anticariat.friendlybooks.ui.activites
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.SyncStateContract
-import com.anticariat.friendlybooks.R
 import com.anticariat.friendlybooks.databinding.ActivityMainBinding
 import com.anticariat.friendlybooks.utils.Constants
 
 
-class MainActivity :BaseActivity() {
+class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -5,9 +5,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
-import com.anticariat.friendlybooks.activites.LoginActivity
-import com.anticariat.friendlybooks.activites.RegisterActivity
-import com.anticariat.friendlybooks.activites.UserProfileActivity
+import com.anticariat.friendlybooks.ui.activites.LoginActivity
+import com.anticariat.friendlybooks.ui.activites.RegisterActivity
+import com.anticariat.friendlybooks.ui.activites.UserProfileActivity
 import com.anticariat.friendlybooks.model.User
 import com.anticariat.friendlybooks.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -61,14 +61,14 @@ class FireStoreClass {
                 editor.apply()
 
                 when(activity){
-                    is LoginActivity->{
+                    is LoginActivity ->{
                         activity.userLoggedInSuccess(user)
                     }
                 }
             }.addOnFailureListener {
 
                 when(activity){
-                    is LoginActivity->{
+                    is LoginActivity ->{
                         activity.hideProgressDialog()
                     }
                 }
@@ -83,13 +83,13 @@ class FireStoreClass {
         mFireStore.collection(Constants.USER).document(getCurrentUser()).update(userHashMap)
             .addOnSuccessListener {
                 when(activity){
-                    is UserProfileActivity->
+                    is UserProfileActivity ->
                        activity.userProfileUpdateSuccess()
                 }
             }
             .addOnFailureListener{
                 when(activity){
-                    is UserProfileActivity->
+                    is UserProfileActivity ->
                         activity.hideProgressDialog()
                 }
 
@@ -109,7 +109,7 @@ class FireStoreClass {
                     Log.e("Download image",uri.toString())
 
                     when(activity){
-                        is UserProfileActivity-> {
+                        is UserProfileActivity -> {
                             activity.imageUploadSuccessfully(uri.toString())
                         }
                 }
@@ -118,7 +118,7 @@ class FireStoreClass {
             .addOnFailureListener{
 
                 when(activity){
-                    is UserProfileActivity->{
+                    is UserProfileActivity ->{
                         activity.hideProgressDialog()
                     }
                 }

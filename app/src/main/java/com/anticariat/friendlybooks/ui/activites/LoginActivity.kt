@@ -1,20 +1,14 @@
-package com.anticariat.friendlybooks.activites
+package com.anticariat.friendlybooks.ui.activites
 
 import android.content.Intent
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import com.anticariat.friendlybooks.R
 import com.anticariat.friendlybooks.databinding.ActivityLoginBinding
 import com.anticariat.friendlybooks.firestore.FireStoreClass
 import com.anticariat.friendlybooks.model.User
 import com.anticariat.friendlybooks.utils.Constants
-import com.anticariat.friendlybooks.utils.MSTextBold
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -43,7 +37,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             intent.putExtra(Constants.EXTRA_USER_DETAILS,user)
             startActivity(intent)
         }else{
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            startActivity(Intent(this@LoginActivity, DashBoardActivity::class.java))
         }
 
 

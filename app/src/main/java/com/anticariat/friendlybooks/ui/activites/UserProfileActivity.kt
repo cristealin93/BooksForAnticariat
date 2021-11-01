@@ -1,4 +1,4 @@
-package com.anticariat.friendlybooks.activites
+package com.anticariat.friendlybooks.ui.activites
 
 import android.content.Intent
 import android.content.pm.PackageManager

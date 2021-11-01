@@ -45,4 +45,8 @@
     <string name="btn_lbl_save">Save</string>
     <string name="read_storage_permission_denited">Provide permission from menu permissions!</string>
     <string name="err_msg_enter_moblie_number">Plsease enter the phone number</string>
+    <string name="title_activity_dash_board">MainActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_products">Products</string>
+    <string name="title_orders">Orders</string>
 </resources>
