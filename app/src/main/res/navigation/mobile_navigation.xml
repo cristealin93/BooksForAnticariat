@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.anticariat.friendlybooks.ui.fragments.ProductsFragment"
+        android:name="com.anticariat.friendlybooks.ui.fragments.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_products"
-        android:name="com.anticariat.friendlybooks.ui.fragments.DashboardFragment"
+        android:name="com.anticariat.friendlybooks.ui.fragments.ProductsFragment"
         android:label="@string/title_products"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_products" />
 
     <fragment
         android:id="@+id/navigation_orders"

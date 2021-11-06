@@ -12,31 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendlyBooks">
 
-        <activity
-            android:name="com.anticariat.friendlybooks.ui.activites.DashBoardActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name="com.anticariat.friendlybooks.ui.activites.UserProfileActivity"
+        <activity android:name=".ui.activites.SettingsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SlashTheme" />
+            android:theme="@style/SlashTheme"/>
         <activity
-            android:name="com.anticariat.friendlybooks.ui.activites.ForgotPasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SlashTheme" />
-        <activity android:name="com.anticariat.friendlybooks.ui.activites.BaseActivity" />
-        <activity
-            android:name="com.anticariat.friendlybooks.ui.activites.RegisterActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SlashTheme" />
-        <activity
-            android:name="com.anticariat.friendlybooks.ui.activites.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SlashTheme" />
-        <activity
-            android:name="com.anticariat.friendlybooks.ui.activites.MainActivity"
+            android:name=".ui.activites.DashBoardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.anticariat.friendlybooks.ui.activites.SplashActivity"
+            android:name=".ui.activites.UserProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SlashTheme" />
+        <activity
+            android:name=".ui.activites.ForgotPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SlashTheme" />
+        <activity android:name=".ui.activites.BaseActivity" />
+        <activity
+            android:name=".ui.activites.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SlashTheme" />
+        <activity
+            android:name=".ui.activites.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SlashTheme" />
+        <activity
+            android:name=".ui.activites.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activites.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SlashTheme">
             <intent-filter>

@@ -23,8 +23,9 @@ class ProductsFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_products, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
      //   homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = "Home Fragment"
+            textView.text = "Products Fragment"
 
         return root
     }
+
 }
