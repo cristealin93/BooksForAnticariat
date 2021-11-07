@@ -9,6 +9,7 @@ import com.anticariat.friendlybooks.ui.activites.LoginActivity
 import com.anticariat.friendlybooks.ui.activites.RegisterActivity
 import com.anticariat.friendlybooks.ui.activites.UserProfileActivity
 import com.anticariat.friendlybooks.model.User
+import com.anticariat.friendlybooks.ui.activites.SettingsActivity
 import com.anticariat.friendlybooks.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -64,6 +65,9 @@ class FireStoreClass {
                     is LoginActivity ->{
                         activity.userLoggedInSuccess(user)
                     }
+                    is SettingsActivity->{
+                        activity.userDetailsSuccessfully(user)
+                    }
                 }
             }.addOnFailureListener {
 
@@ -71,9 +75,12 @@ class FireStoreClass {
                     is LoginActivity ->{
                         activity.hideProgressDialog()
                     }
+
+                    is SettingsActivity->{
+                        activity.hideProgressDialog()
+                    }
+
                 }
-
-
 
             }
     }

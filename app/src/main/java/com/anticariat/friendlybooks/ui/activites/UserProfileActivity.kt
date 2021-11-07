@@ -53,16 +53,35 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         if (intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
 
             userDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
+        }
+
+        binding.etLastName.setText(userDetails.lastName)
+        binding.etFirstName.setText(userDetails.firstName)
+        binding.etEmail.isEnabled = false
+        binding.etEmail.setText(userDetails.email)
+
+        if(userDetails.profileCompleted==0){
 
             binding.etFirstName.isEnabled = false
-            binding.etFirstName.setText(userDetails.firstName)
-
             binding.etLastName.isEnabled = false
-            binding.etLastName.setText(userDetails.lastName)
-
-            binding.etEmail.isEnabled = false
-            binding.etEmail.setText(userDetails.email)
         }
+        else{
+            binding.etFirstName.isEnabled = true
+            binding.etLastName.isEnabled = true
+            GlideLoader(this).loaderUserPicture(userDetails.image, binding.ivUserPhoto)
+
+            if(userDetails.mobile!=0L){
+                binding.etPhoneNumber.setText(userDetails.mobile.toString())
+            }
+
+            if(userDetails.gender==Constants.MALE){
+                binding.rbMale.isChecked=true
+            }else{
+                binding.rbFemale.isChecked=true
+            }
+        }
+
+
         binding.ivUserPhoto.setOnClickListener(this@UserProfileActivity)
         binding.btnSubmit.setOnClickListener(this@UserProfileActivity)
 
@@ -108,17 +127,29 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     private fun updateUserProfileDetails() {
         val userHashMap = HashMap<String, Any>()
-        val userPhoneNumber =
-            binding.etPhoneNumber.text.toString().trim { it <= ' ' }
+
+        val firstName=binding.etFirstName.text.toString().trim{it<=' '}
+        val lastName=binding.etLastName.text.toString().trim{it<=' '}
+
+        if(firstName!=userDetails.firstName){
+            userHashMap[Constants.FIRST_NAME] = firstName
+        }
+        if(lastName!=userDetails.lastName){
+            userHashMap[Constants.LAST_NAME] = lastName
+        }
+
+        val userPhoneNumber = binding.etPhoneNumber.text.toString().trim { it <= ' ' }
         val gender = if (binding.rbMale.isChecked) {
             Constants.MALE
         } else {
             Constants.FEMALE
         }
-        if (userPhoneNumber.isNotEmpty()) {
+        if (userPhoneNumber.isNotEmpty() && userPhoneNumber!=userDetails.mobile.toString()) {
             userHashMap[Constants.MOBILE] = userPhoneNumber.toLong()
         }
-        userHashMap[Constants.GENDER] = gender
+        if (gender.isNotEmpty() && gender!=userDetails.gender) {
+            userHashMap[Constants.GENDER] = gender
+        }
         if(mUserProfileImageURL.isNotEmpty()){
             userHashMap[Constants.IMAGE] = mUserProfileImageURL
         }
@@ -175,7 +206,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             Toast.LENGTH_LONG
         ).show()
 
-        startActivity(Intent(this@UserProfileActivity, MainActivity::class.java))
+        startActivity(Intent(this@UserProfileActivity, DashBoardActivity::class.java))
         finish()
     }
 

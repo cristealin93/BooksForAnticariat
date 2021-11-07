@@ -26,7 +26,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/content_description"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_baseline_supervised_user_circle_24"/>
+                android:src="@drawable/background_login_img"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tb_settings_activity"
@@ -62,6 +62,7 @@
                 android:layout_margin="@dimen/settings_user_picture_margin"
                 android:contentDescription="@string/content_description"
                 android:scaleType="fitXY"
+                android:background="@color/colorLightGrey"
                 android:src="@drawable/ic_baseline_supervised_user_circle_24"
                 />
 
@@ -85,6 +86,7 @@
             android:paddingEnd="@dimen/settings_edit_lbl_marginStartEnd"
             android:paddingBottom="@dimen/settings_edit_lbl_marginTopBottom"
             android:text="@string/lbl_edit"
+            android:textColor="@color/colorDarkGrey"
             android:textSize="@dimen/settings_edit_lbl_textSize"/>
 
         <com.anticariat.friendlybooks.utils.MSTextBold

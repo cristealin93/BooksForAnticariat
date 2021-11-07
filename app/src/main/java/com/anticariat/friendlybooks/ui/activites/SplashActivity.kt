@@ -23,7 +23,7 @@ class SplashActivity : BaseActivity() {
         // Delay to go to the next activity
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            startActivity(Intent(this@SplashActivity, DashBoardActivity::class.java))
+            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             finish()
         }, 2500)
 
