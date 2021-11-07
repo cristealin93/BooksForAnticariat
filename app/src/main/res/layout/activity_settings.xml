@@ -87,5 +87,97 @@
             android:text="@string/lbl_edit"
             android:textSize="@dimen/settings_edit_lbl_textSize"/>
 
+        <com.anticariat.friendlybooks.utils.MSTextBold
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fl_user_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/settings_name_marginTop"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="@dimen/settings_name_textSize"
+            android:text="Alin"/>
+
+        <com.anticariat.friendlybooks.utils.MSTextView
+            android:id="@+id/tv_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/settings_info_marginTop"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/settings_info_textSize"
+            android:text="Male"/>
+
+        <com.anticariat.friendlybooks.utils.MSTextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_gender"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/settings_info_marginTop"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/settings_info_textSize"
+            android:text="cristealin@yahoo.ro"/>
+
+        <com.anticariat.friendlybooks.utils.MSTextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/settings_info_marginTop"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/settings_info_textSize"
+            android:text="0773391696"/>
+        
+        <LinearLayout
+            android:id="@+id/ll_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_phone_number"
+            android:layout_margin="@dimen/settings_address_margin"
+            android:background="@drawable/item_grey_border_background"
+            android:orientation="horizontal"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/settings_address_padding">
+
+            <com.anticariat.friendlybooks.utils.MSTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/settings_lbl_address_margin"
+                android:layout_weight="1"
+                android:text="@string/lbl_address"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/settings_lbl_address_textSize"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_baseline_chevron_right_24"/>
+
+        </LinearLayout>
+
+        <com.anticariat.friendlybooks.utils.MSButton
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_address"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/settings_button_marginStartEnd"
+            android:layout_marginEnd="@dimen/settings_button_marginStartEnd"
+            android:layout_marginTop="@dimen/settings_button_marginTopBottom"
+            android:layout_marginBottom="@dimen/settings_button_marginTopBottom"
+            android:background="@drawable/button_background"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingTop="@dimen/btn_padding"
+            android:paddingBottom="@dimen/btn_padding"
+            android:text="@string/btn_lbl_logout"
+            android:textSize="@dimen/btn_textSize"
+            android:textColor="@color/white"
+
+            />
     </RelativeLayout>
+
 </ScrollView>
