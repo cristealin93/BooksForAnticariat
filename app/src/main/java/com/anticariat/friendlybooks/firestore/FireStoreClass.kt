@@ -5,13 +5,19 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import com.anticariat.friendlybooks.model.Books
 import com.anticariat.friendlybooks.ui.activites.LoginActivity
 import com.anticariat.friendlybooks.ui.activites.RegisterActivity
 import com.anticariat.friendlybooks.ui.activites.UserProfileActivity
 import com.anticariat.friendlybooks.model.User
 import com.anticariat.friendlybooks.ui.activites.SettingsActivity
+import com.anticariat.friendlybooks.ui.fragments.ProductsFragment
 import com.anticariat.friendlybooks.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
@@ -20,7 +26,7 @@ import com.google.firebase.storage.StorageReference
 class FireStoreClass {
 
     private val mFireStore = FirebaseFirestore.getInstance()
-
+    private lateinit var mDataBase: DatabaseReference
     fun userRegistration(activity: RegisterActivity, userInfo: User) {
 
         mFireStore.collection(Constants.USER)
@@ -130,5 +136,12 @@ class FireStoreClass {
                     }
                 }
             }
+    }
+
+    fun addNewBooks( books: Books) {
+
+        mDataBase = FirebaseDatabase.getInstance(Constants.REAL_DATABASE_LINK_LOCATION)
+            .getReference(Constants.BOOKS).child(getCurrentUser())
+            mDataBase.push().setValue(books)
     }
 }

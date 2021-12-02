@@ -4,28 +4,49 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.anticariat.friendlybooks.R
+import com.anticariat.friendlybooks.databinding.FragmentProductsBinding
+import com.anticariat.friendlybooks.firestore.FireStoreClass
+import com.anticariat.friendlybooks.model.Books
+import com.google.firebase.database.DatabaseReference
+
 //import com.anticariat.friendlybooks.activites.ui.home.HomeViewModel
 
 
 class ProductsFragment : Fragment() {
 
-   // private lateinit var homeViewModel: HomeViewModel
+    lateinit var mDataBase: DatabaseReference
+    private var _binding: FragmentProductsBinding? = null
+
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-       // homeViewModel =ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_products, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-     //   homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = "Products Fragment"
+    ): View {
+        _binding = FragmentProductsBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
 
-        return root
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnButton.setOnClickListener {  addDataToRealTimeDB()  }
+
+
+
+    }
+
+    private fun addDataToRealTimeDB() {
+        val books=Books(binding.etTest.text.toString(),"val","test")
+        FireStoreClass().addNewBooks(books)
     }
 
 }

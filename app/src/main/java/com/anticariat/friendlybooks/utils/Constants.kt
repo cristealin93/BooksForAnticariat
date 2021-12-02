@@ -9,6 +9,7 @@ import android.webkit.MimeTypeMap
 object Constants {
 
 
+
     const val USER: String = "user"
     const val FB_PREFERENCES: String = "FriendlyBooksPref"
     const val LOGGED_IN_USERNAME: String = "logged_in_username"
@@ -27,6 +28,9 @@ object Constants {
 
 
     const val USER_PROFILE_IMAGE: String = "user_profile_image"
+
+    const val REAL_DATABASE_LINK_LOCATION: String = "https://anticariatapp-default-rtdb.europe-west1.firebasedatabase.app/"
+    const val BOOKS: String = "Books"
 
     fun getFileExtension(activity: Activity, uri: Uri?): String? {
 
